@@ -56,6 +56,11 @@
     <script>
         // JavaScript code goes here   
 
+        let range = 10;
+
+
+        let numberToGuess = Math.floor(Math.random() * 10) + 1;
+        let counter = 0;
 
         // Added a click listener to the button (will be covered more in zyBook 7.4), 
         // for now just use the following which:
@@ -64,6 +69,35 @@
         // executes the code in the body of the anonymous function
         document.getElementById('guess-button').addEventListener('click', function () {
             //function body -- any code here will be executed when the registered event is triggered.
+            counter += 1;
+          let myGuess = Number(document.getElementById('guess-input').value);
+            // document.getElementById('guess-input').placeholder = "hello"
+            // document.getElementById('guess-input').value = 80;
+          if (myGuess === numberToGuess) {
+            document.getElementById('message').textContent = "You win! Enter a number to play again!";
+            numberToGuess = Math.floor(Math.random() * 10) + 1;
+            counter = 0;
+            document.getElementById('guess-input').value = null;
+          }
+          else {
+            if (counter >= 3) {
+                document.getElementById('message').textContent = "You lose :( Enter a number to start again!";
+                numberToGuess = Math.floor(Math.random() * 10) + 1;
+                counter = 0;
+                document.getElementById('guess-input').value = null;
+            }
+            else {
+                if (myGuess > numberToGuess) {
+                    document.getElementById('message').textContent = "Too high! Guesses left: " + (3 - counter);
+                }
+                else {
+                    document.getElementById('message').textContent = "Too low! Guesses left: " + (3 - counter);
+                }
+                
+            }
+            
+          }
+
         });
 
     </script>
