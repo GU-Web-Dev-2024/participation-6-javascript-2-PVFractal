@@ -34,9 +34,17 @@
 <body>
     <div class="outside-border">
 
-        <h1>Guess the Number (1-10)</h1>
+        <h1 id = "range">Guess the Number (1-10)</h1>
 
         <hr>
+
+        <div>
+            <label for="min-range">Min range:</label>
+            <input type="number" id="min-range" placeholder="Min range">
+
+            <label for="max-range">Max range:</label>
+            <input type="number" id="max-range" placeholder="Max range">
+        </div>
 
         <div>
             <label for="guess-input">Guess:</label>
@@ -113,6 +121,11 @@
             numberToGuess = Math.floor(Math.random() * (maxNumber - minNumber)) + 1;
             counter = 0;
             document.getElementById('message').textContent = "Enter your guess";
+        });
+
+        document.getElementById('min-range').addEventListener('change', function () {
+            let numberValue = document.getElementById("min-range").value;
+            minNumber = numberValue;
         });
 
 
